@@ -1,0 +1,14 @@
+@import url("fonts.css");
+
+p{
+    font-family: 'Didact Gothic-Regular';
+}
+
+html, body {
+    height: 100%;
+}
+
+.welcome-header{
+    font-family: 'Komorebi-Gothic';
+    letter-spacing: .5em;
+}
