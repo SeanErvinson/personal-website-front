@@ -8,7 +8,44 @@ html, body {
     height: 100%;
 }
 
+h2{
+    font-size: 2em;
+}
+
 .welcome-header{
     font-family: 'Komorebi-Gothic';
-    letter-spacing: .5em;
+    letter-spacing: .4em;
+    line-height: 1;
+}
+
+.about-header{
+    font-family: 'Nunito-Bold';
+    letter-spacing: .4em;
+}
+
+.error-header{
+    font-family: 'Nunito-Bold';
+    color: #FF5146;
+}
+
+.description, .error-description{
+    font-family: 'Didact Gothic-Regular';
+}
+.error-description{
+    font-size: 1.4em;
+}
+
+.return-home{
+    color:#0078D7;
+}
+
+.description{
+    font-size: 1.1em;
+    letter-spacing: .1em;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
