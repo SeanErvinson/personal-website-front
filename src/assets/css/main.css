@@ -49,3 +49,25 @@ h2{
     padding: 0;
     box-sizing: border-box;
 }
+
+.table-icon{
+    width: 24px;
+    height: auto;
+}
+
+.table-icon:hover{
+    color: #2a809b;
+    transition: color .4s ease;
+}
+
+.table-icon.disabled{
+    opacity: .1;
+}
+
+.table td, .table th {
+    border-top: 0px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.03);
+}
