@@ -8,6 +8,6 @@ export const routes = [
     { name: 'home', path: '/', component: Home, display: 'Home'},
     { name: 'about', path: '/about', component: About, display: 'About'},
     { name: 'projects', path: '/projects', component: Projects, display: 'Projects' },
-    { name: 'crojects', path: '/contact', component: Contact, display: 'Contact' },
-    { name: '*', path: '*', component: Error, display: '404 Error' }
+    { name: 'contact', path: '/contact', component: Contact, display: 'Contact' },
+    { name: 'error', path: '*', component: Error, display: 'Error' },
 ];

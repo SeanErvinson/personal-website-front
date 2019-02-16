@@ -4,26 +4,12 @@
 }
 
 @font-face {
-    font-family: 'Komorebi-Gothic';
-    src: url('../fonts/Komorebi-Gothic-P.ttf');
-}
-
-@font-face {
-    font-family: 'Nunito-Black';
-    src: url('../fonts/Nunito-Black.ttf');
-}
-
-@font-face {
     font-family: 'Nunito-Bold';
     src: url('../fonts/Nunito-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'Nunito-Light';
-    src: url('../fonts/Nunito-Light.ttf');
+    font-family: 'Komorebi-Gothic';
+    src: url('../fonts/Komorebi-Gothic-P.ttf');
 }
 
-@font-face {
-    font-family: 'Nunito-Regular';
-    src: url('../fonts/Nunito-Regular.ttf');
-}
