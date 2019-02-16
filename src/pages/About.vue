@@ -2,7 +2,7 @@
   <div class="row h-100 align-items-center">
     <div class="col-10 mx-auto">
       <h2 class="header">About Me</h2>
-      <div class="description text-justify">
+      <div class="description">
         <p>Hello there! :^)</p>
         <p>
           I started programming
@@ -22,7 +22,7 @@
         </p>
         <p>
           If you're interested feel free to check out my
-          <router-link to="/projects">stuff</router-link>or
+          <router-link to="/projects">stuff</router-link> or
           contact me at
           <a :href="'mailto:' + emailLink">{{emailLink}}</a>.
         </p>
@@ -55,7 +55,7 @@ export default {
     return {
       yearText: "year",
       dayText: "day",
-      emailLink: null,
+      emailLink: "seanervinsonong@gmail.com",
       medias: [],
       timerInterval: null
     };
