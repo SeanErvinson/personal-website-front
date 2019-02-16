@@ -1,9 +1,17 @@
 <template>
   <div id="app">
-    <div id="menu">
-      <NavMenu></NavMenu>
-    </div>
-    <div class="container h-100">
+    <nav id="menu">
+      <b-navbar toggleable="lg">
+        <b-navbar-brand href="#"></b-navbar-brand>
+        <b-navbar-toggle target="nav_collapse"/>
+        <b-collapse is-nav id="nav_collapse">
+          <b-navbar-nav class="ml-auto justify-content-end">
+            <NavMenu></NavMenu>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </nav>
+    <div class="container h-85">
       <transition
         name="transition-animation"
         :duration="250"
@@ -32,11 +40,14 @@ export default {
 
 <style>
 #app {
-  height: 100%;
+  height: 100% !important;
 }
-
 p {
   font-family: "Didact Gothic-Regular";
+}
+
+.h-85 {
+  height: 85% !important;
 }
 
 html,
@@ -64,10 +75,9 @@ h2 {
 }
 /* Menu */
 #menu {
-  float: right;
   margin-right: 30px;
   letter-spacing: 8px;
-  margin-top: 30px;
+  padding-top: 20px;
   text-align: right;
 }
 #menu ul {
@@ -77,5 +87,8 @@ h2 {
 #menu li a {
   display: inline-block;
   color: #0864c7;
+}
+.nav-item {
+  text-align: right;
 }
 </style>
