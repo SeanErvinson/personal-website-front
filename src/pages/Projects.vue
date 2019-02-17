@@ -105,12 +105,6 @@ export default {
     };
   },
   methods: {
-    rowClass(item, type) {
-      if (!item) return;
-      if (this.items.indexOf(item) % 3 == 0) {
-        return "table-light-striped";
-      }
-    }
   }
 };
 </script>
