@@ -47,7 +47,7 @@ p {
 }
 
 .h-85 {
-  height: 85% !important;
+  height: 75% !important;
 }
 
 html,
@@ -90,5 +90,29 @@ h2 {
 }
 .nav-item {
   text-align: right;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.icon {
+  width: 24px;
+  height: auto;
+}
+.table-links-data {
+  width: 2em;
+  height: auto;
+}
+.highlight:hover {
+  fill: #0864c7;
+}
+.icon.disabled {
+  opacity: 0.2;
+  fill: #545251;
+}
+
+@media only screen and (max-width: 768px) {
+  #menu {
+    padding-bottom: 40px;
+  }
 }
 </style>
