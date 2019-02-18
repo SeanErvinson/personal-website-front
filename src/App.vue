@@ -11,7 +11,7 @@
         </b-collapse>
       </b-navbar>
     </nav>
-    <div class="container h-85">
+    <div class="container h-75">
       <transition
         name="transition-animation"
         :duration="250"
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "./assets/css/fonts.css";
@@ -46,13 +47,14 @@ p {
   font-family: "Didact Gothic-Regular";
 }
 
-.h-85 {
+.h-75 {
   height: 75% !important;
 }
 
 html,
 body {
   height: 100%;
+  font-size: 16px;
 }
 
 h2 {
@@ -70,8 +72,9 @@ h2 {
 }
 .header {
   font-family: "Komorebi-Gothic";
-  letter-spacing: 0.4em;
+  letter-spacing: 0.32em;
   line-height: 1;
+  font-weight: 600;
 }
 /* Menu */
 #menu {
@@ -113,6 +116,8 @@ h2 {
 @media only screen and (max-width: 768px) {
   #menu {
     padding-bottom: 40px;
+    padding-top: 20px;
+    margin-right: 20px;
   }
 }
 </style>

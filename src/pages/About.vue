@@ -9,16 +9,16 @@
           <span class="odometer odometer-theme-default years"></span>
           {{yearText}} and
           <span class="odometer odometer-theme-default days"></span>
-          {{dayText}} ago,
+          {{dayText}} ago;
           this
-          was roughly when I entered college. I'd consider myself as a self taught programmer even though
-          I'm taking (soon to be "took") up Information Technology (My school
+          was roughly around the time I started college. I would consider myself as a self-taught programmer even though
+          I am currently taking up Information Technology (My school
           <s>sucks</s> is meh).
         </p>
-        <p>I do a lot of C# stuff, I do occasionally try android development and game development.</p>
+        <p>I do a lot of C# stuff, and I occasionally try android development and game development.</p>
         <p>
           During my free time, I love exploring new skills such as electronics, server-related,
-          machine learning and stuffs that interest me.
+          machine learning and stuff that interest me.
         </p>
         <p>
           If you're interested feel free to check out my
@@ -71,7 +71,6 @@ export default {
         );
         if (years > 1) this.yearText = "years";
         if (days > 1) this.dayText = "days";
-        // this.dayCount = days;
         var yearsElement = document.querySelector(".years");
         var daysElement = document.querySelector(".days");
         var yearOdometer = new Odometer({

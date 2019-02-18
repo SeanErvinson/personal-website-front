@@ -8,7 +8,6 @@
         :striped="true"
         :fields="fields"
         :items="items"
-        :tbody-tr-class="rowClass"
       >
         <template slot="github" slot-scope="data">
           <template v-if="data.value">
