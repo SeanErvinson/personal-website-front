@@ -70,7 +70,7 @@ h2 {
   font-family: "Didact Gothic-Regular";
 }
 .header {
-  font-family: "Komorebi-Gothic";
+  font-family: "SawarabiGothic-Regular";
   letter-spacing: 0.32em;
   line-height: 1;
   font-weight: 600;
