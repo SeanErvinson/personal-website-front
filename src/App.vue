@@ -71,7 +71,7 @@ h2 {
 }
 .header {
   font-family: "Poppins-Medium";
-  letter-spacing: 0.32em;
+  letter-spacing: 0.29em;
   line-height: 1;
 }
 /* Menu */

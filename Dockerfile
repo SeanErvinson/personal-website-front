@@ -1,6 +1,4 @@
-FROM node:alpine
-
-RUN npm install -g http-server
+FROM node as builder
 
 WORKDIR /usr/src/app
 
@@ -14,6 +12,14 @@ RUN npm run build
 RUN rm -rf ./build
 RUN rm -rf ./test
 RUN rm -rf ./src
+RUN rm -rf ./public
 
-EXPOSE 2127
-CMD ["http-server", "-p", "2127", "-g", "--cors"]
+FROM nginx:alpine
+
+COPY default.conf /etc/nginx/conf.d/
+
+RUN ls -lah
+COPY --from=builder /usr/src/app /usr/src/app
+RUN ls -lah /usr/src/app
+
+EXPOSE 80
