@@ -18,8 +18,6 @@ FROM nginx:alpine
 
 COPY default.conf /etc/nginx/conf.d/
 
-RUN ls -lah
 COPY --from=builder /usr/src/app /usr/src/app
-RUN ls -lah /usr/src/app
 
 EXPOSE 80
