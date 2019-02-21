@@ -1,6 +1,6 @@
 FROM node:alpine
 
-# RUN npm install http-server -g
+RUN npm install -g http-server
 
 WORKDIR /usr/src/app
 
@@ -16,4 +16,4 @@ RUN rm -rf ./test
 RUN rm -rf ./src
 
 EXPOSE 2127
-CMD ["npm", "run", "serve", "--", "--port", "2127"]
+CMD ["http-server", "-p", "2127", "-g", "--cors"]
