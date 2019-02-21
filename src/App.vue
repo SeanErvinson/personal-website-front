@@ -73,7 +73,6 @@ h2 {
   font-family: "Poppins-Medium";
   letter-spacing: 0.32em;
   line-height: 1;
-  font-weight: 600;
 }
 /* Menu */
 #menu {
