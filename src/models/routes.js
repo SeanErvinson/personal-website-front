@@ -3,7 +3,7 @@ import Projects from '../pages/Projects.vue'
 import About from '../pages/About'
 import Contact from '../pages/Contact.vue'
 import Error from '../pages/Error.vue'
-import Admin from '../pages/Admin.vue'
+import Login from '../pages/Login.vue'
 
 export const routes = [
     { name: 'home', path: '/', component: Home, display: 'Home' },
@@ -11,5 +11,5 @@ export const routes = [
     { name: 'projects', path: '/projects', component: Projects, display: 'Projects' },
     { name: 'contact', path: '/contact', component: Contact, display: 'Contact' },
     { name: 'error', path: '*', component: Error, display: 'Error', hidden: true },
-    { name: 'login', path: '/login', component: Admin, display: 'Login', hidden: true},
+    { name: 'login', path: '/login', component: Login, display: 'Login', hidden: true},
 ];
