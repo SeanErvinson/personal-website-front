@@ -9,7 +9,7 @@ export const routes = [
     { name: 'home', path: '/', component: Home, display: 'Home' },
     { name: 'about', path: '/about', component: About, display: 'About' },
     { name: 'projects', path: '/projects', component: Projects, display: 'Projects' },
-    { name: 'contact', path: '/contact', component: Contact, display: 'Contact' },
+    { name: 'contact', path: '/contact', component: Contact, display: 'Contact', hidden: true  },
     { name: 'error', path: '*', component: Error, display: 'Error', hidden: true },
     { name: 'login', path: '/login', component: Login, display: 'Login', hidden: true},
 ];
