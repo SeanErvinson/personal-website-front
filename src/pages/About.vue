@@ -27,7 +27,7 @@
           <a :href="'mailto:' + emailLink">{{emailLink}}</a>.
         </p>
       </div>
-      <h4 class="header">Elsewhere</h4>
+      <!-- <h4 class="header">Elsewhere</h4> -->
       <ul id="about-social-links">
         <li v-for="(media, index) in medias" :key="index" class="about-social-icon">
           <social-links :url="media.url" :label="media.title" :svg="media.imageLocation"/>

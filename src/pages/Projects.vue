@@ -2,17 +2,16 @@
   <div class="row align-items-center">
     <div class="col-10 mx-auto">
       <h2 class="header">My Projects</h2>
-      <b-table
-        responsive
-        :borderless="true"
-        :striped="true"
-        :fields="fields"
-        :items="items"
-      >
+      <b-table responsive :borderless="true" :striped="true" :fields="fields" :items="items">
         <template slot="github" slot-scope="data">
           <template v-if="data.value">
             <a :href="data.value" target="_blank">
-              <simple-svg class="icon highlight" :filepath="circle" :width="'24px'" :height="'24px'"/>
+              <simple-svg
+                class="icon highlight"
+                :filepath="circle"
+                :width="'24px'"
+                :height="'24px'"
+              />
             </a>
           </template>
           <template v-else>
@@ -22,7 +21,12 @@
         <template slot="link" slot-scope="data">
           <template v-if="data.value">
             <a :href="data.value" target="_blank">
-              <simple-svg class="icon highlight" :filepath="square" :width="'24px'" :height="'24px'"/>
+              <simple-svg
+                class="icon highlight"
+                :filepath="square"
+                :width="'24px'"
+                :height="'24px'"
+              />
             </a>
           </template>
           <template v-else>
@@ -32,11 +36,21 @@
         <template slot="playStore" slot-scope="data">
           <template v-if="data.value">
             <a :href="data.value" target="_blank">
-              <simple-svg class="icon highlight" :filepath="triangle" :width="'24px'" :height="'24px'"/>
+              <simple-svg
+                class="icon highlight"
+                :filepath="triangle"
+                :width="'24px'"
+                :height="'24px'"
+              />
             </a>
           </template>
           <template v-else>
-            <simple-svg class="icon disabled" :filepath="triangle" :width="'24px'" :height="'24px'"/>
+            <simple-svg
+              class="icon disabled"
+              :filepath="triangle"
+              :width="'24px'"
+              :height="'24px'"
+            />
           </template>
         </template>
 
@@ -50,6 +64,7 @@
           <simple-svg class="icon" :filepath="data.label" :width="'24px'" :height="'24px'"/>
         </template>
       </b-table>
+      <p>Note: Website is under construction. API endpoint currently not working</p>
     </div>
   </div>
 </template>
@@ -70,41 +85,47 @@ export default {
         },
         github: {
           label: require("../assets/images/github.svg"),
-          tdClass: 'table-links-data'
+          tdClass: "table-links-data"
         },
         link: {
           label: require("../assets/images/link.svg"),
-          tdClass: 'table-links-data'
+          tdClass: "table-links-data"
         },
         playStore: {
           label: require("../assets/images/playstore.svg"),
-          tdClass: 'table-links-data'
+          tdClass: "table-links-data"
         }
       },
       items: [
         {
-          title: "Hello",
-          github: null,
-          link: "Dickerson",
-          playStore: "Macdonald"
-        },
-        {
-          title: "World",
-          github: "github 2",
-          link: "Dickerson",
-          playStore: "Macdonald"
-        },
-        {
-          title: "Bye",
-          github: "github 3",
+          title: "NuWo - Number to Word Converter",
+          github: "https://github.com/SeanErvinson/NumbersToWords",
           link: null,
-          playStore: "Macdonald"
+          playStore: null
+        },
+        {
+          title: "Protect It",
+          github: null,
+          link: null,
+          playStore:
+            "https://play.google.com/store/apps/details?id=com.SheepLabs.ProtectIt"
+        },
+        {
+          title: "seanervinson.com",
+          github: null,
+          link: "https://www.seanervinson.com",
+          playStore: null
+        },
+        {
+          title: "interrogate.me",
+          github: "https://github.com/SeanErvinson/Interrogate-me/tree/master/InterrogateMe.Web",
+          link: null,
+          playStore: null
         }
       ]
     };
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
