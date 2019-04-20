@@ -2,7 +2,7 @@
   <div class="row h-100 align-items-center">
     <div class="col-10 mx-auto">
       <h2 class="header">About Me</h2>
-      <div class="description">
+      <div class="description justify-content-center">
         <p>Hello there! :^)</p>
         <p>
           I started programming
@@ -27,10 +27,10 @@
           <a :href="'mailto:' + emailLink">{{emailLink}}</a>.
         </p>
       </div>
-      <!-- <h4 class="header">Elsewhere</h4> -->
+      <h4 class="header">Elsewhere</h4>
       <ul id="about-social-links">
         <li v-for="(media, index) in medias" :key="index" class="about-social-icon">
-          <social-links :url="media.url" :label="media.title" :svg="media.imageLocation"/>
+          <social-link :url="media.url" :name="media.name" :src="media.images.png"/>
         </li>
       </ul>
     </div>
@@ -40,12 +40,19 @@
 <script>
 import "../assets/css/odometer-theme-default.css";
 import "../assets/js/odometer.min.js";
+import { HTTPLink } from "../helpers/http-commons";
+import SocialLink from "../components/SocialLink.vue";
 
 const beginningTime = new Date(Date.UTC(2016, 7, 15, 6, 0, 0)).getTime();
 const interval = 1000;
 
 export default {
-  beforeMount() {
+  components: {
+    "social-link": SocialLink
+  },
+  created() {
+    this.fetch_media();
+    this.fetch_email();
     this.timer();
   },
   destroyed() {
@@ -55,7 +62,7 @@ export default {
     return {
       yearText: "year",
       dayText: "day",
-      emailLink: "seanervinsonong@gmail.com",
+      emailLink: "",
       medias: [],
       timerInterval: null
     };
@@ -90,6 +97,22 @@ export default {
         });
         dayOdometer.update(days);
       }, interval);
+    },
+    fetch_email() {
+      HTTPLink.get("link/email")
+        .then(response => {
+          var result = response.data;
+          this.emailLink = result[0].url;
+        })
+        .catch(error => {});
+    },
+    fetch_media() {
+      HTTPLink.get("link/github,twitter")
+        .then(response => {
+          this.medias = this.medias.concat(response.data);
+          console.log(this.medias[0].images.png == null);
+        })
+        .catch(error => {});
     }
   }
 };
@@ -99,5 +122,8 @@ export default {
 .description {
   font-size: 1.1em;
   letter-spacing: 0.1em;
+}
+ul {
+  list-style-type: none;
 }
 </style>

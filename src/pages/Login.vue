@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { HTTP } from "../helpers/http-commons";
+import { HTTPSecurity } from "../helpers/http-commons";
 export default {
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      HTTP.post("accounts/login", this.form)
+      HTTPSecurity.post("accounts/login", this.form)
         .then(function(response) {
             if(localStorage.getItem("user") != null){
                 localStorage.removeItem("user");

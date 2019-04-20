@@ -8,12 +8,16 @@ function authHeader() {
         return {};
     }
 }
-export const HTTP = axios.create({
-    baseURL: `https://localhost:5004/api/`,
-    headers: authHeader()
+export const HTTPLink = axios.create({
+    baseURL: `http://localhost:9006/api/`,
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+    },
+    credentials: 'same-origin',
 });
 
-// export const HTTP = axios.create({
-//     baseURL: `https://www.seanervinson.com/api/`,
-//     headers: authHeader()
-// });
+export const HTTPSecurity = axios.create({
+    baseURL: `http://localhost:9050/api/`,
+    headers: authHeader()
+});
