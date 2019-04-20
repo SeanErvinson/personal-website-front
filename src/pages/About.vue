@@ -29,7 +29,7 @@
       </div>
       <h4 class="header">Elsewhere</h4>
       <ul id="about-social-links">
-        <li v-for="(media, index) in medias" :key="index" class="about-social-icon">
+        <li v-for="(media, index) in links" :key="index" class="about-social-icon">
           <social-link :url="media.url" :name="media.name" :src="media.images.png"/>
         </li>
       </ul>
@@ -63,7 +63,8 @@ export default {
       yearText: "year",
       dayText: "day",
       emailLink: "",
-      medias: [],
+      errors: [],
+      links: [],
       timerInterval: null
     };
   },
@@ -104,15 +105,20 @@ export default {
           var result = response.data;
           this.emailLink = result[0].url;
         })
-        .catch(error => {});
+        .catch(error => {
+          this.errors.push(error);
+          this.emailLink = "seanervinsonong@gmail.com";
+        });
     },
     fetch_media() {
       HTTPLink.get("link/github,twitter")
         .then(response => {
-          this.medias = this.medias.concat(response.data);
-          console.log(this.medias[0].images.png == null);
+          this.links = this.links.concat(response.data);
         })
-        .catch(error => {});
+        .catch(error => {
+          this.errors.push(error);
+          this.links = [{'name': 'GitHub', 'url': 'https://www.github.com/SeanErvinson'},{'name': 'Twitter', 'url': 'https://www.twitter.com/ASean___'}];
+        });
     }
   }
 };
