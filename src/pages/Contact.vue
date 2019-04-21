@@ -59,7 +59,9 @@ export default {
       this.show = false;
     },
     clearInput() {
-      this.form = "";
+      this.form.name = "";
+      this.form.email = "";
+      this.form.message = "";
     },
     onSubmit(evt) {
       HTTP.post("mail", this.form)
