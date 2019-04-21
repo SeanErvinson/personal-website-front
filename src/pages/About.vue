@@ -40,7 +40,7 @@
 <script>
 import "../assets/css/odometer-theme-default.css";
 import "../assets/js/odometer.min.js";
-import { HTTPLink } from "../helpers/http-commons";
+import { HTTP } from "../helpers/http-commons";
 import SocialLink from "../components/SocialLink.vue";
 
 const beginningTime = new Date(Date.UTC(2016, 7, 15, 6, 0, 0)).getTime();
@@ -100,7 +100,7 @@ export default {
       }, interval);
     },
     fetch_email() {
-      HTTPLink.get("link/email")
+      HTTP.get("link/email")
         .then(response => {
           var result = response.data;
           this.emailLink = result[0].url;
@@ -111,13 +111,16 @@ export default {
         });
     },
     fetch_media() {
-      HTTPLink.get("link/github,twitter")
+      HTTP.get("link/github,twitter")
         .then(response => {
           this.links = this.links.concat(response.data);
         })
         .catch(error => {
           this.errors.push(error);
-          this.links = [{'name': 'GitHub', 'url': 'https://www.github.com/SeanErvinson'},{'name': 'Twitter', 'url': 'https://www.twitter.com/ASean___'}];
+          this.links = [
+            { name: "GitHub", url: "https://www.github.com/SeanErvinson" },
+            { name: "Twitter", url: "https://www.twitter.com/ASean___" }
+          ];
         });
     }
   }

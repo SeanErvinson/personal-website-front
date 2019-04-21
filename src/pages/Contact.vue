@@ -28,14 +28,25 @@
         </b-form-group>
         <b-button type="submit" variant="dark">Send</b-button>
       </b-form>
+      <div id="prompt" v-bind:class="{expand : show, success: success, failure : failure}">
+        <div class="row status">
+          <span>{{statusMessage}}</span>
+          <span class="ml-auto" v-on:click="closePrompt">X</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { HTTP } from "../helpers/http-commons";
 export default {
   data() {
     return {
+      show: false,
+      success: false,
+      failure: false,
+      statusMessage: "",
       form: {
         name: "",
         email: "",
@@ -44,16 +55,65 @@ export default {
     };
   },
   methods: {
+    closePrompt() {
+      this.show = false;
+    },
+    clearInput() {
+      this.form = "";
+    },
     onSubmit(evt) {
+      HTTP.post("mail", this.form)
+        .then(response => {
+          this.show = true;
+          if (response.status == 200) {
+            this.statusMessage = "Successfully sent!";
+            this.success = true;
+          } else {
+            this.statusMessage =
+              "Something went wrong. Please try again later, Sorry";
+            this.failure = true;
+          }
+        })
+        .catch(error => {
+          this.statusMessage =
+            "Something went wrong. Please try again later, Sorry";
+          this.failure = true;
+        });
+      this.clearInput();
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
     }
   }
 };
 </script>
 
 <style scoped>
-.header-space{
-    padding-bottom: 20px;
+.header-space {
+  padding-bottom: 20px;
+}
+.status{
+  padding: 0px 16px;
+}
+#prompt {
+  height: 0px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: height 0.25s;
+}
+
+#prompt.expand {
+  height: 5.2vh;
+  padding: 8px 16px;
+  color: #ffffff;
+}
+
+#prompt.expand.success {
+  background: #04c986;
+  border: 1px solid #157c59;
+}
+
+#prompt.expand.failure {
+  background: #d75221;
+  border: 1px solid #7c2815;
 }
 </style>
