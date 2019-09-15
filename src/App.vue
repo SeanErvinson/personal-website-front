@@ -3,7 +3,7 @@
     <nav id="menu">
       <b-navbar toggleable="lg">
         <b-navbar-brand href="#"></b-navbar-brand>
-        <b-navbar-toggle target="nav_collapse"/>
+        <b-navbar-toggle target="nav_collapse" />
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav class="ml-auto justify-content-end">
             <NavMenu></NavMenu>
@@ -19,7 +19,7 @@
         enter-active-class="animated fadeIn"
         leave-active-class="animated fadeOut"
       >
-        <router-view/>
+        <router-view />
       </transition>
     </div>
   </div>
@@ -69,7 +69,7 @@ h2 {
   font-family: "Didact Gothic";
 }
 .header {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   letter-spacing: 0.29em;
   line-height: 1;

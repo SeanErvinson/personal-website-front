@@ -1,5 +1,5 @@
 <template>
-  <div class="row align-items-center">
+  <div class="row h-100 align-items-center">
     <div class="col-10 mx-auto">
       <h2 class="header">My Projects</h2>
       <b-table responsive :borderless="true" :striped="true" :fields="fields" :items="items">

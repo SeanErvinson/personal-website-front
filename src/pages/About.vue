@@ -22,7 +22,7 @@
         </p>
         <p>
           If you're interested feel free to check out my
-          <router-link to="/projects">stuff</router-link> or
+          <router-link to="/projects">stuff </router-link>or
           contact me at
           <a :href="'mailto:' + emailLink">{{emailLink}}</a>.
         </p>
@@ -30,7 +30,7 @@
       <h4 class="header">Elsewhere</h4>
       <ul id="about-social-links">
         <li v-for="(media, index) in links" :key="index" class="about-social-icon">
-          <social-link :url="media.url" :name="media.name" :src="media.images.png"/>
+          <social-link :url="media.url" :name="media.name" :src="media.images.png" />
         </li>
       </ul>
     </div>
@@ -107,7 +107,7 @@ export default {
         })
         .catch(error => {
           this.errors.push(error);
-          this.emailLink = "seanervinsonong@gmail.com";
+          this.emailLink = "ervinsonong@gmail.com";
         });
     },
     fetch_media() {
