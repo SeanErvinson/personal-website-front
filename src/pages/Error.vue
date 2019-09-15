@@ -22,7 +22,8 @@ export default {};
 
 <style scoped>
 .error {
-  font-family: "Nunito-Bold";
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
   color: #ff5146;
 }
 .error-description {
@@ -33,6 +34,6 @@ export default {};
 }
 .description,
 .error-description {
-  font-family: "Didact Gothic-Regular";
+  font-family: "Didact Gothic";
 }
 </style>

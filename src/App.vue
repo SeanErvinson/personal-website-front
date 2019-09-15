@@ -28,7 +28,6 @@
 <script>
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import "./assets/css/fonts.css";
 import NavMenu from "./components/NavMenu.vue";
 import "./assets/css/animate.css";
 
@@ -43,7 +42,7 @@ export default {
   height: 100% !important;
 }
 p {
-  font-family: "Didact Gothic-Regular";
+  font-family: "Didact Gothic", sans-serif;
 }
 
 .h-75 {
@@ -67,10 +66,11 @@ h2 {
 }
 .description,
 .error-description {
-  font-family: "Didact Gothic-Regular";
+  font-family: "Didact Gothic";
 }
 .header {
-  font-family: "Poppins-Medium";
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
   letter-spacing: 0.29em;
   line-height: 1;
 }
