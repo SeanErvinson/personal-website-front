@@ -1,6 +1,6 @@
 FROM node:slim as builder
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -16,8 +16,8 @@ RUN rm -rf ./public
 
 FROM nginx:alpine
 
-COPY default.conf /etc/nginx/conf.d/
-
-COPY --from=builder /usr/src/app /usr/src/app
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
