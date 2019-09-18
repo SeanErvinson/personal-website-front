@@ -6,7 +6,7 @@
       </div>
       <b-form @submit="onSubmit">
         <b-form-group id="nameFieldGroup">
-          <b-form-input id="nameField" type="text" v-model="form.name" required placeholder="Name"/>
+          <b-form-input id="nameField" type="text" v-model="form.name" required placeholder="Name" />
         </b-form-group>
         <b-form-group id="emailFieldGroup">
           <b-form-input
@@ -64,7 +64,7 @@ export default {
       this.form.message = "";
     },
     onSubmit(evt) {
-      HTTP.post("mail", this.form)
+      HTTP.post("mail", JSON.stringify(this.form))
         .then(response => {
           this.show = true;
           if (response.status == 200) {
@@ -78,7 +78,7 @@ export default {
         })
         .catch(error => {
           this.statusMessage =
-            "Something went wrong. Please try again later, Sorry";
+            "Something went wrong. Please try again later, Sorry. " + error;
           this.failure = true;
         });
       this.clearInput();
@@ -92,7 +92,7 @@ export default {
 .header-space {
   padding-bottom: 20px;
 }
-.status{
+.status {
   padding: 0px 16px;
 }
 #prompt {
