@@ -19,6 +19,6 @@ export const HTTP = axios.create({
 });
 
 export const HTTPSecurity = axios.create({
-    baseURL: `http://localhost:9050/api/`,
+    baseURL: `https://seanervinson.com/api/`,
     headers: authHeader()
 });
