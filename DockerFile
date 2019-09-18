@@ -16,7 +16,9 @@ RUN rm -rf ./public
 
 FROM nginx:alpine
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY default.conf /etc/nginx/conf.d/
+
+COPY --from=builder /app/dist /usr/src/app
 
 EXPOSE 80
 
