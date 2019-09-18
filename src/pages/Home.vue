@@ -34,6 +34,7 @@
           <span>{{status}}</span>
           <div class="line"></div>
         </div>
+        <p>via: Twitter update</p>
       </div>
     </div>
   </div>
@@ -134,7 +135,7 @@ export default {
   text-align: center;
 }
 #status span {
-  font-size: 1.2em;
+  font-size: 1.23em;
 }
 
 .line {

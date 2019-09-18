@@ -51,7 +51,7 @@ export default {
            localStorage.setItem("user", JSON.stringify(response.data));
         })
         .catch(function(error) {
-          console.log(error);
+          alert(error);
         });
     }
   }
