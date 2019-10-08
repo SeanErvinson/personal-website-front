@@ -15,7 +15,7 @@
             </a>
           </template>
           <template v-else>
-            <simple-svg class="icon disabled" :filepath="circle" :width="'24px'" :height="'24px'"/>
+            <simple-svg class="icon disabled" :filepath="circle" :width="'24px'" :height="'24px'" />
           </template>
         </template>
         <template slot="link" slot-scope="data">
@@ -30,7 +30,7 @@
             </a>
           </template>
           <template v-else>
-            <simple-svg class="icon disabled" :filepath="square" :width="'24px'" :height="'24px'"/>
+            <simple-svg class="icon disabled" :filepath="square" :width="'24px'" :height="'24px'" />
           </template>
         </template>
         <template slot="playStore" slot-scope="data">
@@ -55,13 +55,13 @@
         </template>
 
         <template slot="HEAD_github" slot-scope="data">
-          <simple-svg class="icon" :filepath="data.label" :width="'24px'" :height="'24px'"/>
+          <simple-svg class="icon" :filepath="data.label" :width="'24px'" :height="'24px'" />
         </template>
         <template slot="HEAD_link" slot-scope="data">
-          <simple-svg class="icon" :filepath="data.label" :width="'24px'" :height="'24px'"/>
+          <simple-svg class="icon" :filepath="data.label" :width="'24px'" :height="'24px'" />
         </template>
         <template slot="HEAD_playStore" slot-scope="data">
-          <simple-svg class="icon" :filepath="data.label" :width="'24px'" :height="'24px'"/>
+          <simple-svg class="icon" :filepath="data.label" :width="'24px'" :height="'24px'" />
         </template>
       </b-table>
       <p>Note: Website is under construction. API endpoint currently not working</p>
@@ -98,6 +98,12 @@ export default {
       },
       items: [
         {
+          title: "TextLint",
+          github: "https://github.com/SeanErvinson/text-lint-web",
+          link: "http://app.seanervinson.com/textlint/",
+          playStore: null
+        },
+        {
           title: "NuWo - Number to Word Converter",
           github: "https://github.com/SeanErvinson/NumbersToWords",
           link: null,
@@ -118,7 +124,7 @@ export default {
         },
         {
           title: "interrogate.me",
-          github: "https://github.com/SeanErvinson/Interrogate-me/tree/master/InterrogateMe.Web",
+          github: "https://github.com/SeanErvinson/interrogate-me-Website",
           link: null,
           playStore: null
         }
