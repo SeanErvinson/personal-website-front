@@ -1,41 +1,39 @@
 <template>
-  <div class="row h-100 align-items-center">
-    <div class="col-8 mx-auto">
-      <div class="header-space">
-        <h2 class="header">Contact me</h2>
-      </div>
-      <b-form @submit="onSubmit">
-        <b-form-group id="nameFieldGroup">
-          <b-form-input id="nameField" type="text" v-model="form.name" required placeholder="Name" />
-        </b-form-group>
-        <b-form-group id="emailFieldGroup">
-          <b-form-input
-            id="emailField"
-            type="email"
-            v-model="form.email"
-            required
-            placeholder="Email"
-          />
-        </b-form-group>
-        <b-form-group id="messageFieldGroup" description="Come say hi!">
-          <b-form-textarea
-            id="messageField"
-            placeholder="Message"
-            v-model="form.message"
-            rows="5"
-            max-rows="6"
-          />
-        </b-form-group>
-        <b-button type="submit" variant="dark">Send</b-button>
-      </b-form>
-      <div id="prompt" v-bind:class="{expand : show, success: success, failure : failure}">
-        <div class="row status">
-          <span>{{statusMessage}}</span>
-          <span class="ml-auto" v-on:click="closePrompt">X</span>
-        </div>
-      </div>
+  <section id="contact">
+    <h2 class="header">Contact me</h2>
+    <form @submit="onSubmit" action>
+      <label for="nameField">
+        <span>Name</span>
+        <input id="nameField" name="name" v-model="form.name" type="text" placeholder="Bob Ross" />
+      </label>
+      <label for="emailField">
+        <span>Email</span>
+        <input
+          id="emailField"
+          name="email"
+          v-model="form.email"
+          type="email"
+          placeholder="notbobross@gmail.com"
+        />
+      </label>
+      <label for="nameField">
+        <span>Message</span>
+        <textarea
+          name="message"
+          v-model="form.message"
+          id="messageField"
+          cols="30"
+          rows="10"
+          placeholder="Hello there!"
+        ></textarea>
+      </label>
+      <button>Send</button>
+    </form>
+    <div class="prompt success" v-bind:class="{expand : show, success: success, failure : failure}">
+      {{statusMessage}}
+      <span v-on:click="closePrompt">&#9747;</span>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -64,6 +62,7 @@ export default {
       this.form.message = "";
     },
     onSubmit(evt) {
+      console.log(JSON.stringify(this.form));
       HTTP.post("mail", JSON.stringify(this.form))
         .then(response => {
           this.show = true;
@@ -89,33 +88,62 @@ export default {
 </script>
 
 <style scoped>
-.header-space {
-  padding-bottom: 20px;
+.prompt {
+  height: 0px;
+  letter-spacing: 0.1rem;
+  color: #ffffff;
+  border-radius: 6px;
+  transition: height 0.25s;
+}
+.prompt.expand {
+  display: flex;
+  padding: 0.4rem 0.7rem;
+  height: 5.2vh;
+  justify-content: space-between;
+}
+
+.prompt.success {
+  background: #04c986;
+}
+.prompt.failure {
+  background: #d75221;
+}
+#contact {
+  width: 90%;
+}
+form label {
+  display: block;
+}
+form label input,
+form label textarea {
+  display: block;
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #c3c3c3;
+  border-radius: 6px;
+}
+form label input:focus,
+form label textarea:focus {
+  outline: 1px solid #007bff;
+}
+form button {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  width: 100%;
+}
+form button:active {
+  background: #4b4b4b;
+}
+form textarea {
+  min-width: 100%;
+  min-width: 100%;
+  min-height: 240px;
+  max-height: 400px;
 }
 .status {
   padding: 0px 16px;
-}
-#prompt {
-  height: 0px;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  transition: height 0.25s;
-}
-
-#prompt.expand {
-  height: 5.2vh;
-  padding: 8px 16px;
-  color: #ffffff;
-}
-
-#prompt.expand.success {
-  background: #04c986;
-  border: 1px solid #157c59;
-}
-
-#prompt.expand.failure {
-  background: #d75221;
-  border: 1px solid #7c2815;
 }
 </style>
