@@ -1,51 +1,80 @@
 <template>
-  <div class="row h-100 wrapper">
-    <h2 class="header">{{welcome}}</h2>
-    <div class="sub-wrapper">
-      <ul id="social-links">
-        <li class="social-link">
-          <a class="icon" target="_blank" :href="twitter">
-            <i class="fa-2x fab fa-twitter"></i>
-          </a>
-        </li>
-        <li class="social-link">
-          <a class="icon" target="_blank" :href="github">
-            <i class="fa-2x fab fa-github"></i>
-          </a>
-        </li>
-        <li class="social-link">
-          <a class="icon" target="_blank" :href="linkedin">
-            <i class="fa-2x fab fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="social-link">
-          <a class="icon" target="_blank" :href="'mailto:'+email">
-            <i class="fa-2x fas fa-envelope"></i>
-          </a>
-        </li>
-      </ul>
+  <section id="home">
+    <h2 class="caption header">{{welcome}}</h2>
+    <ul class="social-links">
+      <li class="social-link">
+        <a target="_blank" :href="twitter">
+          <Icon iconName="Twitter" class="icon action" viewBox="0 0 512 512">
+            <IconTwitter />
+          </Icon>
+        </a>
+      </li>
+      <li class="social-link">
+        <a target="_blank" :href="github">
+          <Icon iconName="GitHub" class="icon action" viewBox="0 0 24 24">
+            <IconGithub />
+          </Icon>
+        </a>
+      </li>
+      <li class="social-link">
+        <a target="_blank" :href="linkedin">
+          <Icon iconName="LinkedIn" class="icon action" viewBox="0 0 448 512">
+            <IconLinkedIn />
+          </Icon>
+        </a>
+      </li>
+      <li class="social-link">
+        <a target="_blank" :href="'mailto:'+email">
+          <Icon iconName="Email" class="icon action" viewBox="0 0 24 24">
+            <IconMail />
+          </Icon>
+        </a>
+      </li>
+    </ul>
+    <div id="twitter-status">
+      <h3>currently:</h3>
+      <span class="status caption">{{status}}</span>
+      <div class="line"></div>
+      <p>via: Twitter update</p>
     </div>
-    <div class="sub-wrapper">
-      <div id="status">
-        <div>
-          <h3>currently:</h3>
-        </div>
-        <div>
-          <span>{{status}}</span>
-          <div class="line"></div>
-        </div>
-        <p>via: Twitter update</p>
-      </div>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import "../assets/css/animate.css";
 import { HTTP } from "../helpers/http-commons";
+import Icon from "@/components/shared/Icon";
+import IconGithub from "@/components/shared/Icon/icons/IconGithub";
+import IconTwitter from "@/components/shared/Icon/icons/IconTwitter";
+import IconMail from "@/components/shared/Icon/icons/IconMail";
+import IconLinkedIn from "@/components/shared/Icon/icons/IconLinkedIn";
+
 const interval = 3500;
 export default {
-  created() {
+  components: {
+    Icon,
+    IconGithub,
+    IconTwitter,
+    IconMail,
+    IconLinkedIn
+  },
+  data: function() {
+    return {
+      greetInterval: null,
+      twitterStatusInterval: null,
+      greetings: ["Welcome", "欢迎", "Mabuhay", "ようこそ"],
+      status: "doing nothing",
+      welcome: "",
+      twitter_updates: [],
+      twitter: "",
+      github: "",
+      email: "",
+      linkedin: ""
+    };
+  },
+  beforeMount() {
+    this._fetchTwitterUpdate();
+    this.changeTwitterStatus();
     this.changeWelcome();
     this.fetch_media("twitter").then(value => (this.twitter = value));
     this.fetch_media("github").then(value => (this.github = value));
@@ -53,22 +82,18 @@ export default {
     this.fetch_media("email").then(value => (this.email = value));
   },
   destroyed() {
-    clearInterval(this.timerInterval);
+    clearInterval(this.greetInterval);
+    clearInterval(this.twitterStatusInterval);
   },
-  data() {
-    return {
-      greetings: ["Welcome", "欢迎", "Mabuhay", "ようこそ"],
-      index: 1,
-      welcome: "Welcome",
-      timerInterval: null,
-      status: "doing nothing",
-      twitter: "",
-      github: "",
-      email: "",
-      linkedin: ""
-    };
+  created() {
+    this.welcome = this.greetings[0];
   },
   methods: {
+    _fetchTwitterUpdate() {
+      fetch("https://seanervinson.com/api/v1/tasks/twitter/status")
+        .then(response => response.json())
+        .then(json => this.twitter_updates.push(...json.results));
+    },
     animateCss(element, animationName, callback) {
       const node = document.querySelector(element);
       node.classList.add("animated", animationName);
@@ -84,13 +109,30 @@ export default {
       node.addEventListener("animationend", handleAnimationEnd);
     },
     changeWelcome() {
-      this.timerInterval = setInterval(() => {
+      var index = 1;
+      if (this.greetings.length === 0) {
+        return false;
+      }
+      this.greetInterval = setInterval(() => {
         this.animateCss(".header", "flipOutX", () => {
-          this.welcome = this.greetings[this.index++];
+          this.welcome = this.greetings[index++];
           this.animateCss(".header", "flipInX");
         });
-        this.index %= this.greetings.length;
+        index %= this.greetings.length;
       }, interval);
+    },
+    changeTwitterStatus() {
+      var index = 0;
+      if (this.twitter_updates.length === 0) {
+        return false;
+      }
+      this.twitterStatusInterval = setInterval(() => {
+        this.animateCss(".status", "rollOut", () => {
+          this.status = this.twitter_updates[index++];
+          this.animateCss(".status", "rollIn");
+        });
+        index %= this.twitter_updates.length;
+      }, (Math.random() + 1) * interval);
     },
     fetch_media(socialMedia) {
       return HTTP.get("link/" + socialMedia).then(
@@ -101,40 +143,23 @@ export default {
 };
 </script>
 <style scoped>
-.wrapper {
-  height: 100%;
+#home {
+  text-align: center;
+}
+
+.social-links {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.sub-wrapper {
-  padding-top: 1em;
-  padding: 1em 0.8em 1em 0.8em;
-}
-
-#social-links {
-  display: inline;
 }
 
 .social-link {
-  display: inline;
   padding: 0.8em;
 }
 
-.icon {
-  color: #727272;
+.caption {
+  height: 100%;
+  max-height: 2rem;
 }
-
-.icon:hover {
-  color: #484848;
-}
-
-#status {
-  text-align: center;
-}
-#status span {
+#twitter-status span {
   font-size: 1.23em;
 }
 
