@@ -1,17 +1,7 @@
 <template>
   <div id="app">
-    <nav id="menu">
-      <b-navbar toggleable="lg">
-        <b-navbar-brand href="#"></b-navbar-brand>
-        <b-navbar-toggle target="nav_collapse" />
-        <b-collapse is-nav id="nav_collapse">
-          <b-navbar-nav class="ml-auto justify-content-end">
-            <NavMenu></NavMenu>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </nav>
-    <div class="container h-75">
+    <NavBar />
+    <div class="container">
       <transition
         name="transition-animation"
         :duration="250"
@@ -28,42 +18,48 @@
 <script>
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import NavMenu from "./components/NavMenu.vue";
 import "./assets/css/animate.css";
+import NavBar from "@/components/ui/NavBar";
 
 export default {
   name: "app",
-  components: { NavMenu }
+  components: {
+    NavBar
+  }
 };
 </script>
 
 <style>
-#app {
-  height: 100% !important;
-}
-p {
-  font-family: "Didact Gothic", sans-serif;
-}
-
-.h-75 {
-  height: 75% !important;
-}
-
-html,
-body {
-  height: 100%;
-  font-size: 16px;
-}
-
-h2 {
-  font-size: 2em;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+html,
+body,
+#app {
+  height: 100%;
+  font-family: "Didact Gothic", sans-serif;
+}
+
+.container {
+  height: 100vh;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  list-style-type: none;
+}
+
 .description,
 .error-description {
   font-family: "Didact Gothic";
@@ -74,48 +70,11 @@ h2 {
   letter-spacing: 0.29em;
   line-height: 1;
 }
-/* Menu */
-#menu {
-  margin-right: 30px;
-  letter-spacing: 8px;
-  padding-top: 20px;
-  text-align: right;
-}
-#menu ul {
-  list-style-type: none;
-  margin: 0;
-}
-#menu li a {
-  display: inline-block;
-  color: #0864c7;
-}
-.nav-item {
-  text-align: right;
-}
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.02);
-}
-.icon {
-  width: 24px;
-  height: auto;
 }
 .table-links-data {
   width: 2em;
   height: auto;
-}
-.highlight:hover {
-  fill: #0864c7;
-}
-.icon.disabled {
-  opacity: 0.2;
-  fill: #545251;
-}
-
-@media only screen and (max-width: 768px) {
-  #menu {
-    padding-bottom: 40px;
-    padding-top: 20px;
-    margin-right: 20px;
-  }
 }
 </style>
