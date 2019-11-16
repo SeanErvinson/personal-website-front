@@ -164,7 +164,8 @@ export default {
 }
 
 .line {
-  width: 16em;
+  width: 100%;
+  margin: auto;
   max-width: 208px;
   border: 0.5px solid #484848;
 }
@@ -172,9 +173,6 @@ export default {
 @media only screen and (max-width: 768px) {
   .line {
     max-width: 168px;
-  }
-  .fa-2x {
-    font-size: 1.5em;
   }
 }
 </style>
