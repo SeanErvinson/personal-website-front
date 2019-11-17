@@ -1,6 +1,14 @@
 <template>
   <nav id="menu">
-    <NavMenu></NavMenu>
+    <b-navbar toggleable="lg">
+      <b-navbar-brand href="#"></b-navbar-brand>
+      <b-navbar-toggle target="nav_collapse" />
+      <b-collapse is-nav id="nav_collapse">
+        <b-navbar-nav class="ml-auto justify-content-end">
+          <NavMenu></NavMenu>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </nav>
 </template>
 
@@ -13,30 +21,15 @@ export default {
 
 <style scoped>
 nav {
-  margin: 1rem 1.5rem;
   letter-spacing: 8px;
   text-align: right;
-  position: absolute;
-  right: 0%;
 }
-/* #menu {
-  margin-right: 30px;
-  letter-spacing: 8px;
-  padding-top: 20px;
-  text-align: right;
-}
-#menu li a {
-  display: inline-block;
-  color: #0864c7;
-}
-.nav-item {
-  text-align: right;
-}
-@media only screen and (max-width: 768px) {
-  #menu {
-    padding-bottom: 40px;
-    padding-top: 20px;
-    margin-right: 20px;
+@media screen and (min-width: 991px) {
+  nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
   }
-} */
+}
 </style>
