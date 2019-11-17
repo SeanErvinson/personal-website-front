@@ -58,10 +58,10 @@ export default {
   components: {
     "social-link": SocialLink
   },
-  created() {
+  beforeMount() {
+    this.timer();
     this.fetch_media();
     this.fetch_email();
-    this.timer();
   },
   destroyed() {
     clearInterval(this.timerInterval);
