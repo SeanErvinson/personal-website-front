@@ -62,7 +62,6 @@ export default {
       this.form.message = "";
     },
     onSubmit(evt) {
-      console.log(JSON.stringify(this.form));
       HTTP.post("mail", JSON.stringify(this.form))
         .then(response => {
           this.show = true;
@@ -109,7 +108,7 @@ export default {
   background: #d75221;
 }
 #contact {
-  width: 90%;
+  width: 85%;
 }
 form label {
   display: block;
