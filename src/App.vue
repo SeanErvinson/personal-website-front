@@ -43,8 +43,8 @@ body,
 }
 
 .container {
-  height: 100vh;
   width: 75%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,9 +69,6 @@ ul {
   font-weight: 500;
   letter-spacing: 0.29em;
   line-height: 1;
-}
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.02);
 }
 .table-links-data {
   width: 2em;
