@@ -1,67 +1,69 @@
 <template>
   <section id="projects">
     <h2 class="header">My Projects</h2>
-    <table class="project-table">
-      <thead>
-        <th>Title</th>
-        <th>
-          <Icon viewBox="0 0 24 24" class="icon">
-            <IconGithub />
-          </Icon>
-        </th>
-        <th>
-          <Icon viewBox="0 0 24 24" class="icon">
-            <IconLink />
-          </Icon>
-        </th>
-        <th>
-          <Icon viewBox="0 0 24 24" class="icon">
-            <IconPlaystore />
-          </Icon>
-        </th>
-      </thead>
-      <tbody>
-        <tr v-for="item in items" :key="item.title">
-          <td>{{item.title}}</td>
-          <td>
-            <a :href="item.github" target="_blank">
-              <Icon
-                :iconName="item.title + ' Github'"
-                viewBox="0 0 24 24"
-                class="icon action blue-highlight"
-                :class="{disabled: item.github === null}"
-              >
-                <IconCircle />
-              </Icon>
-            </a>
-          </td>
-          <td>
-            <a :href="item.link" target="_blank">
-              <Icon
-                :iconName="item.title + ' Link'"
-                viewBox="0 0 24 24"
-                class="icon action blue-highlight"
-                :class="{disabled: item.link === null}"
-              >
-                <IconSquare />
-              </Icon>
-            </a>
-          </td>
-          <td>
-            <a :href="item.playStore" target="_blank">
-              <Icon
-                :iconName="item.title + ' PlayStore'"
-                viewBox="0 0 24 24"
-                class="icon action blue-highlight"
-                :class="{disabled: item.playStore === null}"
-              >
-                <IconTriangle />
-              </Icon>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrapper">
+      <table class="project-table">
+        <thead>
+          <th>Title</th>
+          <th>
+            <Icon viewBox="0 0 24 24" class="icon">
+              <IconGithub />
+            </Icon>
+          </th>
+          <th>
+            <Icon viewBox="0 0 24 24" class="icon">
+              <IconLink />
+            </Icon>
+          </th>
+          <th>
+            <Icon viewBox="0 0 24 24" class="icon">
+              <IconPlaystore />
+            </Icon>
+          </th>
+        </thead>
+        <tbody>
+          <tr v-for="item in items" :key="item.title">
+            <td>{{item.title}}</td>
+            <td>
+              <a :href="item.github" target="_blank">
+                <Icon
+                  :iconName="item.title + ' Github'"
+                  viewBox="0 0 24 24"
+                  class="icon action blue-highlight"
+                  :class="{disabled: item.github === null}"
+                >
+                  <IconCircle />
+                </Icon>
+              </a>
+            </td>
+            <td>
+              <a :href="item.link" target="_blank">
+                <Icon
+                  :iconName="item.title + ' Link'"
+                  viewBox="0 0 24 24"
+                  class="icon action blue-highlight"
+                  :class="{disabled: item.link === null}"
+                >
+                  <IconSquare />
+                </Icon>
+              </a>
+            </td>
+            <td>
+              <a :href="item.playStore" target="_blank">
+                <Icon
+                  :iconName="item.title + ' PlayStore'"
+                  viewBox="0 0 24 24"
+                  class="icon action blue-highlight"
+                  :class="{disabled: item.playStore === null}"
+                >
+                  <IconTriangle />
+                </Icon>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </template>
 
@@ -128,14 +130,26 @@ export default {
 #projects {
   width: 90%;
 }
-.project-table {
+.table-wrapper {
   width: 100%;
+  overflow: auto;
+}
+.project-table {
   text-align: center;
+  width: 100%;
 }
 
 .project-table thead th:first-child,
 .project-table tbody td:first-child {
   text-align: left;
+}
+
+.project-table thead th {
+  width: 10%;
+}
+
+.project-table thead th:first-child {
+  width: 70%;
 }
 
 .project-table tbody tr:nth-of-type(odd) {
