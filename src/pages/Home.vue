@@ -92,7 +92,7 @@ export default {
     _fetchTwitterUpdate() {
       fetch("https://seanervinson.com/api/v1/tasks/twitter/status")
         .then(response => response.json())
-        .then(json => this.twitter_updates.push(...json.results));
+        .then(json => this.twitter_updates.push(...json));
     },
     animateCss(element, animationName, callback) {
       const node = document.querySelector(element);
