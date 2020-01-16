@@ -8,7 +8,7 @@
 import ProjectTile from "@/components/Project/ProjectTile";
 export default {
   props: {
-    projects: Object
+    projects: Array
   },
   components: {
     ProjectTile
