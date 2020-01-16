@@ -1,27 +1,64 @@
 <template>
   <div class="tile">
-    <div class="title">{{project.title}}</div>
+    <div class="tile-heading">
+      <div class="title">{{project.title}}</div>
+      <div class="links">
+        <ProjectLink v-if="project.github" :url="project.github">
+          <Icon
+            :iconName="project.title + ' Github'"
+            viewBox="0 0 24 24"
+            class="icon-md action blue-highlight"
+          >
+            <IconGithub />
+          </Icon>
+        </ProjectLink>
+        <ProjectLink v-if="project.playstore" :url="project.playstore">
+          <Icon
+            :iconName="project.title + ' Playstore'"
+            viewBox="0 0 24 24"
+            class="icon-md action blue-highlight"
+          >
+            <IconPlaystore />
+          </Icon>
+        </ProjectLink>
+        <ProjectLink v-if="project.site" :url="project.site">
+          <Icon
+            :iconName="project.title + ' Site'"
+            viewBox="0 0 24 24"
+            class="icon-md action blue-highlight"
+          >
+            <IconLink />
+          </Icon>
+        </ProjectLink>
+      </div>
+    </div>
     <div class="description">{{project.description}}</div>
     <hr />
-    <div class="tags">
-      <ProjectTag :tag="tag"></ProjectTag>
-      <ProjectTag :tag="tag2"></ProjectTag>
-      <ProjectTag :tag="tag3"></ProjectTag>
-      <ProjectTag :tag="tag4"></ProjectTag>
-      <ProjectTag :tag="tag5"></ProjectTag>
-    </div>
+    <div class="tags"></div>
   </div>
 </template>
 
 <script>
 import ProjectTag from "@/components/Project/ProjectTag";
+import ProjectLink from "@/components/Project/ProjectLink";
+
+import Icon from "@/components/shared/Icon";
+import IconGithub from "@/components/shared/Icon/icons/IconGithub";
+import IconLink from "@/components/shared/Icon/icons/IconLink";
+import IconPlaystore from "@/components/shared/Icon/icons/IconPlaystore";
+
 export default {
   components: {
-    ProjectTag
+    Icon,
+    IconGithub,
+    IconLink,
+    IconPlaystore,
+    ProjectTag,
+    ProjectLink
   },
   props: {
     project: Object
-  },
+  }
 };
 </script>
 
@@ -35,16 +72,25 @@ export default {
     transform: scale($grow-scale);
   }
 
+  .tile-heading {
+    display: flex;
+  }
+
   .title {
     font-family: $secondary-font;
     font-size: $smedium;
     font-weight: bold;
     text-align: center;
+    flex: 1;
   }
 
   .description {
     font-size: $small;
     text-align: center;
+  }
+
+  .links {
+    display: flex;
   }
 
   .tags {
