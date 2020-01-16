@@ -34,7 +34,9 @@
     </div>
     <div class="description">{{project.description}}</div>
     <hr />
-    <div class="tags"></div>
+    <div class="tags">
+      <ProjectTag v-for="tag in project.tags" :key="tag.id"></ProjectTag>
+    </div>
   </div>
 </template>
 
