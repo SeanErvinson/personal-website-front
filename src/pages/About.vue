@@ -36,10 +36,10 @@
         <a :href="'mailto:' + email">{{email}}</a>.
       </p>
     </div>
-    <h4 class="header">Elsewhere</h4>
-    <ul id="about-social-links">
+    <h4>Elsewhere</h4>
+    <ul id="social-links">
       <li v-for="(media, index) in links" :key="index" class="about-social-icon">
-        <social-link :url="media.url" :name="media.name" />
+        <SocialLink :url="media.url" :name="media.name" />
       </li>
     </ul>
   </section>
@@ -55,9 +55,7 @@ const beginningTime = new Date(Date.UTC(2016, 7, 15, 6, 0, 0)).getTime();
 const interval = 1000;
 
 export default {
-  components: {
-    "social-link": SocialLink
-  },
+  components: { SocialLink },
   beforeMount() {
     this.timer();
     this._fetch_ink("github").then(value =>
@@ -128,9 +126,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .description {
-  font-size: 1.1em;
-  letter-spacing: 0.1em;
+  p {
+    font-size: $small;
+    letter-spacing: 0.1rem;
+  }
+}
+h4 {
+  font-size: $smedium;
+}
+#social-links {
+  a:hover {
+    color: $accent-light-color;
+  }
+  a:visited {
+    color: $accent-dark-color;
+  }
 }
 </style>
