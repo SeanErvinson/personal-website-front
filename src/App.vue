@@ -43,6 +43,7 @@ body {
 }
 a {
   text-decoration: none;
+  color: $secondary-dark-color;
 }
 
 ul {
@@ -101,16 +102,20 @@ hr {
 
 .container {
   min-height: 100%;
+  width: 60%;
+  margin: auto auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   letter-spacing: 0.29em;
   line-height: 1;
+  margin-bottom: $xxsmall;
 }
 // .description,
 // .error-description {
