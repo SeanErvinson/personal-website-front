@@ -1,7 +1,7 @@
 <template>
   <section id="about">
-    <h2 class="header">About Me</h2>
-    <div class="description justify-content-center">
+    <h1>About Me</h1>
+    <div class="description">
       <p>Hello there! :^)</p>
       <p>
         I started programming
@@ -33,23 +33,23 @@
         If you're interested feel free to check out my
         <router-link to="/projects">stuff</router-link>&nbsp;or
         contact me at
-        <a :href="'mailto:' + emailLink">{{emailLink}}</a>.
+        <a :href="'mailto:' + email">{{email}}</a>.
       </p>
     </div>
     <h4 class="header">Elsewhere</h4>
     <ul id="about-social-links">
       <li v-for="(media, index) in links" :key="index" class="about-social-icon">
-        <social-link :url="media.url" :name="media.name" :src="media.images.png" />
+        <social-link :url="media.url" :name="media.name" />
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-import "../assets/css/odometer-theme-default.css";
-import "../assets/js/odometer.min.js";
-import { HTTP } from "../helpers/http-commons";
-import SocialLink from "../components/SocialLink.vue";
+import "@/assets/css/odometer-theme-default.css";
+import "@/assets/js/odometer.min.js";
+import { linkService } from "@/actions";
+import SocialLink from "@/components/SocialLink.vue";
 
 const beginningTime = new Date(Date.UTC(2016, 7, 15, 6, 0, 0)).getTime();
 const interval = 1000;
@@ -60,8 +60,19 @@ export default {
   },
   beforeMount() {
     this.timer();
-    this.fetch_media();
-    this.fetch_email();
+    this._fetch_ink("github").then(value =>
+      this.links.push({
+        name: value.name,
+        url: value.site_url
+      })
+    );
+    this._fetch_ink("twitter").then(value =>
+      this.links.push({
+        name: value.name,
+        url: value.site_url
+      })
+    );
+    this._fetch_ink("email").then(value => (this.email = value.username));
   },
   destroyed() {
     clearInterval(this.timerInterval);
@@ -70,7 +81,7 @@ export default {
     return {
       yearText: "year",
       dayText: "day",
-      emailLink: "",
+      email: "",
       errors: [],
       links: [],
       timerInterval: null
@@ -107,29 +118,11 @@ export default {
         dayOdometer.update(days);
       }, interval);
     },
-    fetch_email() {
-      HTTP.get("link/email")
-        .then(response => {
-          var result = response.data;
-          this.emailLink = result[0].url;
-        })
-        .catch(error => {
-          this.errors.push(error);
-          this.emailLink = "ervinsonong@gmail.com";
-        });
-    },
-    fetch_media() {
-      HTTP.get("link/github,twitter")
-        .then(response => {
-          this.links = this.links.concat(response.data);
-        })
-        .catch(error => {
-          this.errors.push(error);
-          this.links = [
-            { name: "GitHub", url: "https://www.github.com/SeanErvinson" },
-            { name: "Twitter", url: "https://www.twitter.com/ASean___" }
-          ];
-        });
+    _fetch_ink(social) {
+      return linkService
+        .get(social)
+        .then(response => response.data)
+        .catch(message => null);
     }
   }
 };
