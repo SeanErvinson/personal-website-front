@@ -159,22 +159,22 @@ export default {
     display: flex;
     justify-content: center;
     .social-link {
-      padding: 0.8em;
+      padding: $xsmall;
     }
   }
   .caption {
     height: 100%;
-    max-height: 2rem;
+    max-height: $mlarge;
   }
   #twitter-status {
     span {
-      font-size: 1.23em;
+      font-size: $smedium;
     }
     .line {
       width: 100%;
       margin: auto;
       max-width: 208px;
-      border: 0.5px solid #484848;
+      border: 0.5px solid $accent-dark-color;
     }
     @media only screen and (max-width: 768px) {
       .line {

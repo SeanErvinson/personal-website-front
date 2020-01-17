@@ -90,8 +90,8 @@ export default {
   .prompt {
     transition: height 0.5s ease-in-out;
     height: 0px;
-    color: #ffffff;
-    border-radius: 6px;
+    color: $white-color;
+    border-radius: $xxsmall;
     &.expand {
       display: flex;
       height: $mlarge;
@@ -116,11 +116,11 @@ export default {
     textarea {
       display: block;
       width: 100%;
-      padding: 0.3rem 0.5rem;
-      border: 1px solid #c3c3c3;
+      padding: 0.3rem $xxsmall;
+      border: 1px solid $accent-light-color;
       border-radius: 6px;
       &:focus {
-        outline: 1px solid #007bff;
+        outline: 1px solid $secondary-dark-color;
       }
     }
     textarea {
@@ -130,17 +130,14 @@ export default {
       max-height: 400px;
     }
     button {
-      background: #333;
-      color: white;
+      background: $accent-dark-color;
+      color: $white-color;
       border: none;
-      padding: 0.3rem 0.8rem;
-      border-radius: 6px;
+      padding: $xxsmall $xsmall;
+      border-radius: $xxsmall;
       width: 100%;
-      &:active {
-        background: #4b4b4b;
-      }
       &:hover {
-        background: #686868;
+        background: $accent-light-color;
       }
     }
   }
