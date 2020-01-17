@@ -38,6 +38,7 @@
 
 <script>
 import { HTTP } from "../helpers/http-commons";
+import { mailService } from "@/actions";
 export default {
   data() {
     return {
@@ -62,7 +63,7 @@ export default {
       this.form.message = "";
     },
     onSubmit(evt) {
-      HTTP.post("mail", JSON.stringify(this.form))
+      mailService.post("/", JSON.stringify(this.form))
         .then(response => {
           this.show = true;
           if (response.status == 200) {
