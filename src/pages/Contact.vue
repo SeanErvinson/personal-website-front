@@ -27,11 +27,11 @@
           placeholder="Hello there!"
         ></textarea>
       </label>
-      <button>Send</button>
+      <button class="action">Send</button>
     </form>
     <div class="prompt success" v-bind:class="{expand : show, success: success, failure : failure}">
-      {{statusMessage}}
-      <span v-on:click="this.show = !this.show">&#9747;</span>
+      <p v-if="show">{{statusMessage}}</p>
+      <span v-on:click="show = !show" class="action" v-if="show">&#9747;</span>
     </div>
   </section>
 </template>
@@ -84,64 +84,65 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.prompt {
-  height: 0px;
-  letter-spacing: 0.1rem;
-  color: #ffffff;
-  border-radius: 6px;
-  transition: height 0.25s;
-}
-.prompt.expand {
-  display: flex;
-  padding: 0.4rem 0.7rem;
-  height: 5.2vh;
-  justify-content: space-between;
-}
-
-.prompt.success {
-  background: #04c986;
-}
-.prompt.failure {
-  background: #d75221;
-}
+<style lang="scss" scoped>
 #contact {
   width: 100%;
-}
-form label {
-  display: block;
-}
-form label input,
-form label textarea {
-  display: block;
-  width: 100%;
-  padding: 0.3rem 0.5rem;
-  border: 1px solid #c3c3c3;
-  border-radius: 6px;
-}
-form label input:focus,
-form label textarea:focus {
-  outline: 1px solid #007bff;
-}
-form button {
-  background: #333;
-  color: white;
-  border: none;
-  padding: 0.3rem 0.8rem;
-  border-radius: 6px;
-  width: 100%;
-}
-form button:active {
-  background: #4b4b4b;
-}
-form textarea {
-  min-width: 100%;
-  min-width: 100%;
-  min-height: 240px;
-  max-height: 400px;
-}
-.status {
-  padding: 0px 16px;
+  .prompt {
+    transition: height 0.5s ease-in-out;
+    height: 0px;
+    color: #ffffff;
+    border-radius: 6px;
+    &.expand {
+      display: flex;
+      height: $mlarge;
+      padding: 0 $xxsmall;
+      & p {
+        flex: 1;
+        font-size: $small;
+      }
+    }
+    &.success {
+      background: #04c986;
+    }
+    &.failure {
+      background: #d75221;
+    }
+  }
+  form {
+    label {
+      display: block;
+    }
+    input,
+    textarea {
+      display: block;
+      width: 100%;
+      padding: 0.3rem 0.5rem;
+      border: 1px solid #c3c3c3;
+      border-radius: 6px;
+      &:focus {
+        outline: 1px solid #007bff;
+      }
+    }
+    textarea {
+      min-width: 100%;
+      min-width: 100%;
+      min-height: 240px;
+      max-height: 400px;
+    }
+    button {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      width: 100%;
+      &:active {
+        background: #4b4b4b;
+      }
+      &:hover {
+        background: #686868;
+      }
+    }
+  }
 }
 </style>
