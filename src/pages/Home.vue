@@ -99,7 +99,8 @@ export default {
       taskService
         .get("twitter/status")
         .then(response => response.json())
-        .then(json => this.twitter_updates.push(...json));
+        .then(json => this.twitter_updates.push(...json))
+        .catch(error => []);
     },
     _fetch_ink(social) {
       return linkService
@@ -150,37 +151,36 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #home {
   text-align: center;
-}
-
-.social-links {
-  display: flex;
-}
-
-.social-link {
-  padding: 0.8em;
-}
-
-.caption {
-  height: 100%;
-  max-height: 2rem;
-}
-#twitter-status span {
-  font-size: 1.23em;
-}
-
-.line {
   width: 100%;
-  margin: auto;
-  max-width: 208px;
-  border: 0.5px solid #484848;
-}
-
-@media only screen and (max-width: 768px) {
-  .line {
-    max-width: 168px;
+  .social-links {
+    display: flex;
+    justify-content: center;
+    .social-link {
+      padding: 0.8em;
+    }
+  }
+  .caption {
+    height: 100%;
+    max-height: 2rem;
+  }
+  #twitter-status {
+    span {
+      font-size: 1.23em;
+    }
+    .line {
+      width: 100%;
+      margin: auto;
+      max-width: 208px;
+      border: 0.5px solid #484848;
+    }
+    @media only screen and (max-width: 768px) {
+      .line {
+        max-width: 168px;
+      }
+    }
   }
 }
 </style>
