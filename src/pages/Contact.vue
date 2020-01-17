@@ -102,10 +102,10 @@ export default {
       }
     }
     &.success {
-      background: #04c986;
+      background: $success-color;
     }
     &.failure {
-      background: #d75221;
+      background: $error-color;
     }
   }
   form {
@@ -128,6 +128,7 @@ export default {
       min-width: 100%;
       min-height: 240px;
       max-height: 400px;
+      font-family: $primary-font;
     }
     button {
       background: $accent-dark-color;
