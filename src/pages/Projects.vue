@@ -1,6 +1,6 @@
 <template>
   <section id="projects">
-    <h2 class="header">My Projects</h2>
+    <h1>My Projects</h1>
     <ProjectList :projects="projects"></ProjectList>
   </section>
 </template>
