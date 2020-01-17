@@ -35,7 +35,7 @@
     <div class="description">{{project.description}}</div>
     <hr />
     <div class="tags">
-      <ProjectTag v-for="tag in project.tags" :key="tag.id"></ProjectTag>
+      <ProjectTag v-for="tag in mappedTags" :key="tag.id" :tag="tag"></ProjectTag>
     </div>
   </div>
 </template>
@@ -58,8 +58,25 @@ export default {
     ProjectTag,
     ProjectLink
   },
+  computed: {
+    mappedTags() {
+      this.project.tags.map(item => {
+        this.tags.push({
+          id: item.id,
+          name: item.name,
+          type: item.tag_type
+        });
+      });
+      return this.tags;
+    }
+  },
   props: {
     project: Object
+  },
+  data() {
+    return {
+      tags: []
+    };
   }
 };
 </script>
