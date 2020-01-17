@@ -117,13 +117,4 @@ h1 {
   line-height: 1;
   margin-bottom: $xxsmall;
 }
-// .description,
-// .error-description {
-//   font-family: "Didact Gothic";
-// }
-
-// .table-links-data {
-//   width: 2em;
-//   height: auto;
-// }
 </style>
