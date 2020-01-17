@@ -1,6 +1,6 @@
 <template>
   <section id="contact">
-    <h2 class="header">Contact me</h2>
+    <h1>Contact me</h1>
     <form @submit="onSubmit" action>
       <label for="nameField">
         <span>Name</span>
@@ -31,14 +31,14 @@
     </form>
     <div class="prompt success" v-bind:class="{expand : show, success: success, failure : failure}">
       {{statusMessage}}
-      <span v-on:click="closePrompt">&#9747;</span>
+      <span v-on:click="this.show = !this.show">&#9747;</span>
     </div>
   </section>
 </template>
 
 <script>
-import { HTTP } from "../helpers/http-commons";
 import { mailService } from "@/actions";
+
 export default {
   data() {
     return {
@@ -54,16 +54,14 @@ export default {
     };
   },
   methods: {
-    closePrompt() {
-      this.show = false;
-    },
     clearInput() {
       this.form.name = "";
       this.form.email = "";
       this.form.message = "";
     },
     onSubmit(evt) {
-      mailService.post("/", JSON.stringify(this.form))
+      mailService
+        .post("/", JSON.stringify(this.form))
         .then(response => {
           this.show = true;
           if (response.status == 200) {
@@ -109,7 +107,7 @@ export default {
   background: #d75221;
 }
 #contact {
-  width: 85%;
+  width: 100%;
 }
 form label {
   display: block;
