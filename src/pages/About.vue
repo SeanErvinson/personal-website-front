@@ -3,6 +3,7 @@
     <h1>About Me</h1>
     <div class="description">
       <p>Hello there! :^)</p>
+      <br />
       <p>
         I started programming
         <span class="odometer odometer-theme-default years"></span>
@@ -14,6 +15,7 @@
         I am currently taking up Information Technology (My school
         <s>sucks</s> is meh).
       </p>
+      <br />
       <p>
         I do a lot of C# stuff, but recently I've been using
         <a
@@ -29,6 +31,7 @@
         During my free time, I love exploring new skills such as electronics, server-related,
         machine learning and stuff that interest me.
       </p>
+      <br />
       <p>
         If you're interested feel free to check out my
         <router-link to="/projects">stuff</router-link>&nbsp;or
@@ -128,6 +131,7 @@ export default {
 
 <style lang="scss" scoped>
 .description {
+  margin: $xxsmall 0;
   p {
     font-size: $small;
     letter-spacing: 0.1rem;
