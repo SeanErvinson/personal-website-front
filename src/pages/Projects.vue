@@ -47,37 +47,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #projects {
   width: 100%;
-}
-.table-wrapper {
-  width: 100%;
-  overflow: auto;
-}
-.project-table {
-  text-align: center;
-  width: 100%;
-}
-
-.project-table thead th:first-child,
-.project-table tbody td:first-child {
-  text-align: left;
-}
-
-.project-table thead th {
-  width: 10%;
-}
-
-.project-table thead th:first-child {
-  width: 70%;
-}
-
-.project-table tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.02);
-}
-.project-table td,
-.project-table th {
-  padding: 4px;
 }
 </style>
