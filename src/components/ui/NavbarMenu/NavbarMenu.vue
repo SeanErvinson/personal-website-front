@@ -6,7 +6,7 @@
   </ul>
 </template>
 <script>
-import { routes } from "../models/routes";
+import { routes } from "@/models/routes";
 
 export default {
   data() {
