@@ -6,10 +6,8 @@
       <br />
       <p>
         I started programming
-        <span class="odometer odometer-theme-default years"></span>
-        {{yearText}} and
-        <span class="odometer odometer-theme-default days"></span>
-        {{dayText}} ago;
+        <ICountUp :endVal="years" :options="yearOptions"></ICountUp>&nbsp;and
+        <ICountUp :endVal="days" :options="dayOptions"></ICountUp>&nbsp;ago;
         this
         was roughly around the time I started college. I would consider myself as a self-taught programmer even though
         I am currently taking up Information Technology (My school
@@ -49,8 +47,7 @@
 </template>
 
 <script>
-import "@/assets/css/odometer-theme-default.css";
-import "@/assets/js/odometer.min.js";
+import ICountUp from "vue-countup-v2";
 import { linkService } from "@/actions";
 import SocialLink from "@/components/SocialLink.vue";
 
@@ -58,9 +55,9 @@ const beginningTime = new Date(Date.UTC(2016, 7, 15, 6, 0, 0)).getTime();
 const interval = 1000;
 
 export default {
-  components: { SocialLink },
+  components: { SocialLink, ICountUp },
   beforeMount() {
-    this.timer();
+    this.getPeriod();
     this._fetch_ink("github").then(value =>
       this.links.push({
         name: value.name,
@@ -75,49 +72,43 @@ export default {
     );
     this._fetch_ink("email").then(value => (this.email = value.username));
   },
-  destroyed() {
-    clearInterval(this.timerInterval);
-  },
   data() {
     return {
-      yearText: "year",
-      dayText: "day",
       email: "",
+      days: 0,
+      years: 0,
       errors: [],
-      links: [],
-      timerInterval: null
+      links: []
     };
   },
+  computed: {
+    yearOptions() {
+      return {
+        useEasing: true,
+        useGrouping: true,
+        separator: ",",
+        suffix: this.years > 1 ? " years" : " year",
+        duration: 5
+      };
+    },
+    dayOptions() {
+      return {
+        useEasing: true,
+        useGrouping: true,
+        separator: ",",
+        suffix: this.days > 1 ? " days" : " day",
+        duration: 3
+      };
+    }
+  },
   methods: {
-    timer() {
-      this.timerInterval = setInterval(() => {
-        let currentTime = new Date().getTime();
-        var difference = new Date(currentTime - beginningTime);
-        var years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
-        var days = Math.floor(
-          (difference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24)
-        );
-        if (years > 1) this.yearText = "years";
-        if (days > 1) this.dayText = "days";
-        var yearsElement = document.querySelector(".years");
-        var daysElement = document.querySelector(".days");
-        var yearOdometer = new Odometer({
-          el: yearsElement,
-          value: 0,
-          format: "d",
-          theme: "default",
-          duration: 500
-        });
-        yearOdometer.update(years);
-        var dayOdometer = new Odometer({
-          el: daysElement,
-          value: 0,
-          format: "d",
-          theme: "default",
-          duration: 500
-        });
-        dayOdometer.update(days);
-      }, interval);
+    getPeriod() {
+      let currentTime = new Date().getTime();
+      var difference = new Date(currentTime - beginningTime);
+      this.days = Math.floor(
+        (difference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24)
+      );
+      this.years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
     },
     _fetch_ink(social) {
       return linkService
