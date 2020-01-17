@@ -1,6 +1,6 @@
 <template>
   <section id="home">
-    <h2 class="caption header">{{welcome}}</h2>
+    <h1 class="caption">{{welcome}}</h1>
     <ul class="social-links">
       <li class="social-link">
         <a target="_blank" :href="twitter">
@@ -24,7 +24,7 @@
         </a>
       </li>
       <li class="social-link">
-        <a target="_blank" :href="'mailto:'+email">
+        <a target="_blank" :href="mailTo">
           <Icon iconName="Email" class="icon action" viewBox="0 0 24 24">
             <IconMail />
           </Icon>
@@ -42,12 +42,13 @@
 
 <script>
 import "../assets/css/animate.css";
-import { HTTP } from "../helpers/http-commons";
 import Icon from "@/components/shared/Icon";
 import IconGithub from "@/components/shared/Icon/icons/IconGithub";
 import IconTwitter from "@/components/shared/Icon/icons/IconTwitter";
 import IconMail from "@/components/shared/Icon/icons/IconMail";
 import IconLinkedIn from "@/components/shared/Icon/icons/IconLinkedIn";
+
+import { linkService, taskService } from "@/actions";
 
 const interval = 3500;
 export default {
@@ -57,6 +58,11 @@ export default {
     IconTwitter,
     IconMail,
     IconLinkedIn
+  },
+  computed: {
+    mailTo() {
+      return this.email != null ? "mailto:" + this.email : null;
+    }
   },
   data: function() {
     return {
@@ -76,10 +82,10 @@ export default {
     this._fetchTwitterUpdate();
     this.changeTwitterStatus();
     this.changeWelcome();
-    this.fetch_media("twitter").then(value => (this.twitter = value));
-    this.fetch_media("github").then(value => (this.github = value));
-    this.fetch_media("linkedin").then(value => (this.linkedin = value));
-    this.fetch_media("email").then(value => (this.email = value));
+    this._fetch_ink("github").then(value => (this.github = value.site_url));
+    this._fetch_ink("twitter").then(value => (this.twitter = value.site_url));
+    this._fetch_ink("linkedin").then(value => (this.linkedin = value.site_url));
+    this._fetch_ink("email").then(value => (this.email = value.username));
   },
   destroyed() {
     clearInterval(this.greetInterval);
@@ -90,9 +96,16 @@ export default {
   },
   methods: {
     _fetchTwitterUpdate() {
-      fetch("https://seanervinson.com/api/v1/tasks/twitter/status")
+      taskService
+        .get("twitter/status")
         .then(response => response.json())
         .then(json => this.twitter_updates.push(...json));
+    },
+    _fetch_ink(social) {
+      return linkService
+        .get(social)
+        .then(response => response.data)
+        .catch(message => null);
     },
     animateCss(element, animationName, callback) {
       const node = document.querySelector(element);
@@ -133,11 +146,6 @@ export default {
         });
         index %= this.twitter_updates.length;
       }, (Math.random() + 1) * interval);
-    },
-    fetch_media(socialMedia) {
-      return HTTP.get("link/" + socialMedia).then(
-        response => response.data[0].url
-      );
     }
   }
 };
