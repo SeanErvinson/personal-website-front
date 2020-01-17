@@ -1,6 +1,6 @@
 <template>
   <section id="home">
-    <h1 class="caption">{{welcome}}</h1>
+    <h1 class="caption greeting">{{welcome}}</h1>
     <ul class="social-links">
       <li class="social-link">
         <a target="_blank" :href="twitter">
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import "../assets/css/animate.css";
+import "@/assets/css/animate.css";
 import Icon from "@/components/shared/Icon";
 import IconGithub from "@/components/shared/Icon/icons/IconGithub";
 import IconTwitter from "@/components/shared/Icon/icons/IconTwitter";
@@ -127,9 +127,9 @@ export default {
         return false;
       }
       this.greetInterval = setInterval(() => {
-        this.animateCss(".header", "flipOutX", () => {
+        this.animateCss(".greeting", "flipOutX", () => {
           this.welcome = this.greetings[index++];
-          this.animateCss(".header", "flipInX");
+          this.animateCss(".greeting", "flipInX");
         });
         index %= this.greetings.length;
       }, interval);

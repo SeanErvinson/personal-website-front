@@ -1,9 +1,9 @@
-import Home from '../pages/Home.vue'
-import Projects from '../pages/Projects.vue'
-import About from '../pages/About'
-import Contact from '../pages/Contact.vue'
-import Error from '../pages/Error.vue'
-import Login from '../pages/Login.vue'
+import Home from '@/pages/Home.vue'
+import Projects from '@/pages/Projects.vue'
+import About from '@/pages/About'
+import Contact from '@/pages/Contact.vue'
+import Error from '@/pages/Error.vue'
+import Login from '@/pages/Login.vue'
 
 export const routes = [
     { name: 'home', path: '/', component: Home, display: 'Home' },
