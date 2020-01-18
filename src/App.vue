@@ -117,4 +117,9 @@ h1 {
   line-height: 1;
   margin-bottom: $xxsmall;
 }
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 75%;
+  }
+}
 </style>
