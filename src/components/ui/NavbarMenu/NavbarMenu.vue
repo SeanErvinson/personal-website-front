@@ -16,17 +16,24 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .menu-item.router-link-exact-active {
   background: rgb(230, 230, 230);
+  &::after {
+    content: "|";
+    background: #0864c7;
+  }
 }
-.menu-item.router-link-exact-active::after {
-  content: "|";
-  background: #0864c7;
+a {
+  margin-right: $xxsmall;
+  font-family: $primary-font;
+  letter-spacing: $xxsmall;
+  color: $secondary-color;
 }
-@media screen and (min-width: 991px) {
-  .menu-item {
-    display: block;
+@media only screen and (max-width: 768px) {
+  a {
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
   }
 }
 </style>
