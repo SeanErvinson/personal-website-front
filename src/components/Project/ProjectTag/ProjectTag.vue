@@ -21,9 +21,6 @@ export default {
       return { background: backgroundColor };
     }
   },
-  data() {
-    return {};
-  }
 };
 </script>
 
@@ -33,9 +30,10 @@ export default {
   width: 100%;
   max-width: 104px;
   height: 100%;
-  max-height: 40px;
+  max-height: 48px;
   border-radius: $large;
   overflow: hidden;
+  overflow-y: hidden;
   padding: $xxsmall;
   .name {
     font-family: $secondary-font;
