@@ -32,6 +32,8 @@ export default {
               playstore: item.playstore_url,
               site: item.site_url,
               tags: item.tags,
+              empty_content: item.empty_content,
+              empty_privacy_policy: item.empty_privacy_policy,
               created_on: item.created_on
             });
           });
