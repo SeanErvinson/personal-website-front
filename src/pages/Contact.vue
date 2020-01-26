@@ -27,7 +27,7 @@
           placeholder="Hello there!"
         ></textarea>
       </label>
-      <button class="action">Send</button>
+      <input class="action" type="button" value="Send" />
     </form>
     <div class="prompt success" v-bind:class="{expand : show, success: success, failure : failure}">
       <p v-if="show">{{statusMessage}}</p>
@@ -130,10 +130,11 @@ export default {
       max-height: 400px;
       font-family: $primary-font;
     }
-    button {
+    input[type="button"] {
       background: $accent-dark-color;
       color: $white-color;
       border: none;
+      margin-top: $xxsmall;
       padding: $xxsmall $xsmall;
       border-radius: $xxsmall;
       width: 100%;
