@@ -30,6 +30,18 @@
             <IconLink />
           </Icon>
         </ProjectLink>
+        <router-link
+          v-if="!project.empty_privacy_policy"
+          :to="{name: 'projectPrivacyPolicy', params: {slug: project.slug} }"
+        >
+          <Icon
+            :iconName="project.title + ' privacy policy'"
+            viewBox="0 0 24 24"
+            class="icon-md action blue-highlight"
+          >
+            <IconPrivacyPolicy />
+          </Icon>
+        </router-link>
       </div>
     </div>
     <div class="description">{{project.description}}</div>
@@ -48,6 +60,7 @@ import Icon from "@/components/shared/Icon";
 import IconGithub from "@/components/shared/Icon/icons/IconGithub";
 import IconLink from "@/components/shared/Icon/icons/IconLink";
 import IconPlaystore from "@/components/shared/Icon/icons/IconPlaystore";
+import IconPrivacyPolicy from "@/components/shared/Icon/icons/IconPrivacyPolicy";
 
 export default {
   components: {
@@ -55,6 +68,7 @@ export default {
     IconGithub,
     IconLink,
     IconPlaystore,
+    IconPrivacyPolicy,
     ProjectTag,
     ProjectLink
   },
