@@ -1,7 +1,11 @@
 <template>
   <ul>
     <li v-for="(route, index) in routes" :key="index">
-      <router-link v-if="!route.hidden" :to="route.path" class="menu-item">{{route.display}}</router-link>
+      <router-link
+        v-if="!route.hidden && route.display != null"
+        :to="route.path"
+        class="menu-item"
+      >{{route.display}}</router-link>
     </li>
   </ul>
 </template>
