@@ -29,7 +29,8 @@ deploy_application:
   stage: deploy
   <<: *ssh_config
   script:
-    - ssh $SERVER_USER@$SERVER_IP -p $SERVER_PORT -o StrictHostKeyChecking=No  "
+    - ssh $SERVER_USER@$SERVER_IP -p $SERVER_PORT -o StrictHostKeyChecking=No "
+      cd /var/www/$APP_DIR;
       docker-compose up --build -d;"
   only:
     - master
