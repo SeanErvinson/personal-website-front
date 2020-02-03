@@ -17,9 +17,9 @@ build_applicatioN:
   <<: *ssh_config
   script:
     - ssh $SERVER_USER@$SERVER_IP -p $SERVER_PORT -o StrictHostKeyChecking=No "
-      sudo rm -r /var/www/$APP_DIR/;
-      sudo mkdir /var/www/$APP_DIR/;"
-    - rsync --rsync-path="sudo rsync" -e "ssh -p $SERVER_PORT" --port $SERVER_PORT -r * $SERVER_USER@$SERVER_IP:/var/www/$APP_DIR
+      sudo rm -r /var/www/$APP_NAME/;
+      sudo mkdir /var/www/$APP_NAME/;"
+    - rsync --rsync-path="sudo rsync" -e "ssh -p $SERVER_PORT" --port $SERVER_PORT -r * $SERVER_USER@$SERVER_IP:/var/www/$APP_NAME
   only:
     - master
   tags:
@@ -30,8 +30,8 @@ deploy_application:
   <<: *ssh_config
   script:
     - ssh $SERVER_USER@$SERVER_IP -p $SERVER_PORT -o StrictHostKeyChecking=No "
-      cd /var/www/$APP_DIR;
-      docker-compose up --build -d;"
+      cd /var/www/$APP_NAME;
+      docker-compose up --build -d seanervinson-front-end-application;"
   only:
     - master
   tags:
