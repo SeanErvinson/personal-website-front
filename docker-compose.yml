@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  seanervinson-front-end-application:
+    restart: always
+    container_name: seanervinson-front-end-application
+    build:
+      context: .
+      dockerfile: DockerFile
+      labels:
+        - "com.seanervinson.description=Front-End of seanervinson"
+    ports:
+      - "9000:80"
