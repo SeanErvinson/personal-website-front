@@ -1,0 +1,37 @@
+stages:
+  - build
+  - deploy
+
+.ssh-config: &ssh_config
+  before_script:
+    - uname -a
+    - "which ssh-agent || ( apk update && apk add openssh-client )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - apk add rsync
+
+build_applicatioN:
+  stage: build
+  <<: *ssh_config
+  script:
+    - ssh $SERVER_USER@$SERVER_IP -p $SERVER_PORT -o StrictHostKeyChecking=No "
+      sudo rm -r /var/www/$APP_DIR/;
+      sudo mkdir /var/www/$APP_DIR/;"
+    - rsync --rsync-path="sudo rsync" -e "ssh -p $SERVER_PORT" --port $SERVER_PORT -r * $SERVER_USER@$SERVER_IP:/var/www/$APP_DIR
+  only:
+    - master
+  tags:
+    - main
+
+deploy_application:
+  stage: deploy
+  <<: *ssh_config
+  script:
+    - ssh $SERVER_USER@$SERVER_IP -p $SERVER_PORT -o StrictHostKeyChecking=No  "
+      docker-compose up --build -d;"
+  only:
+    - master
+  tags:
+    - main
