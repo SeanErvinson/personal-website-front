@@ -4,6 +4,7 @@ services:
   seanervinson-front-end-application:
     restart: always
     container_name: seanervinson-front-end-application
+    image: seanervinson-front-end-application:latest
     build:
       context: .
       dockerfile: DockerFile
