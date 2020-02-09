@@ -19,7 +19,7 @@ build_application:
     - ssh $SERVER_USER@$SERVER_IP -p $SERVER_PORT -o StrictHostKeyChecking=No "
       sudo rm -r /var/www/seanervinson.com/$APP_NAME/;
       sudo mkdir -p /var/www/seanervinson.com/$APP_NAME/;"
-    - rsync --rsync-path="sudo rsync" -e "ssh -p $SERVER_PORT" --port $SERVER_PORT -r * $SERVER_USER@$SERVER_IP:/var/www/seanervinson.com/$APP_NAME
+    - rsync --rsync-path="sudo rsync" -e "ssh -p $SERVER_PORT" --port $SERVER_PORT -r . $SERVER_USER@$SERVER_IP:/var/www/seanervinson.com/$APP_NAME
   only:
     - master
   tags:
