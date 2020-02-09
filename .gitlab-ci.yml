@@ -12,7 +12,7 @@ stages:
     - chmod 700 ~/.ssh
     - apk add rsync
 
-build_applicatioN:
+build_application:
   stage: build
   <<: *ssh_config
   script:
