@@ -12,3 +12,9 @@ services:
         - "com.seanervinson.description=Front-End of seanervinson"
     ports:
       - "9000:80"
+    networks:
+      - seanervinson-network
+
+networks:
+  seanervinson-network:
+    external: true
