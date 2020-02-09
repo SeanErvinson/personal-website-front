@@ -17,5 +17,5 @@ services:
 
 networks:
   seanervinson-front-network:
-    network_mode: bridge
+    driver: bridge
     name: seanervinson-front-network
