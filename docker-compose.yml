@@ -13,8 +13,9 @@ services:
     ports:
       - "9000:80"
     networks:
-      - seanervinson-network
+      - seanervinson-front-network
 
 networks:
-  seanervinson-network:
-    external: true
+  seanervinson-front-network:
+    network_mode: bridge
+    name: seanervinson-front-network
