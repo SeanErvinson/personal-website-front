@@ -1,19 +1,9 @@
-# my-project
+# SeanErivnson.com
 
-## Project setup
-```
-npm install
-```
+## Get started
+- Install node js on your machine
+- cd to root directory, type "npm install" for dependencies
+- type "npm run serve" to start the server
+- Go to http://localhost:8080
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Upload to server
-rsync -avh --progress --exclude "node_modules" /home/asean/Programming/Projects/personal-website/src/personal-website-front/* sean@web-server:~/var/www/seanervinson.com/personal-website-front/
+If yarn is installed replace npm with yarn instead.
